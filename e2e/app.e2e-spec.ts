@@ -1,10 +1,10 @@
-import { TestingDemoPage } from './app.po';
+import { IntegrationTestingDemoPage } from './app.po';
 
-describe('testing-demo App', function() {
-  let page: TestingDemoPage;
+describe('integration-testing-demo App', function() {
+  let page: IntegrationTestingDemoPage;
 
   beforeEach(() => {
-    page = new TestingDemoPage();
+    page = new IntegrationTestingDemoPage();
   });
 
   it('should display message saying app works', () => {
