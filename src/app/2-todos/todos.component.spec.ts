@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Rx';
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { HttpModule } from '@angular/http';
@@ -28,10 +28,20 @@ describe('TodosComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should loads todos from the server', () => {
+  it('should loads todos from the server', async(() => {
+    // // Observable :
+    // const service = TestBed.get(TodoService);
+    // spyOn(service, 'getTodos').and.returnValue(Observable.from([[1, 2, 3]]));
+    // fixture.detectChanges();
+    // expect(component.todos.length).toBe(3);
+
+
+    // // promise :
     const service = TestBed.get(TodoService);
-    spyOn(service, 'getTodos').and.returnValue(Observable.from([[1, 2, 3]]));
+    spyOn(service, 'getTodosPromise').and.returnValue(Promise.resolve([1, 2, 3]));
     fixture.detectChanges();
-    expect(component.todos.length).toBe(3);
-  });
+    fixture.whenStable().then(() => {
+      expect(component.todos.length).toBe(3);
+    });
+  }));
 });

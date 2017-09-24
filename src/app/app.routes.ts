@@ -7,5 +7,5 @@ export const routes = [
   { path: 'users/:id', component: UserDetailsComponent },
   { path: 'users', component: UsersComponent },
   { path: 'todos', component: TodosComponent },
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent, pathMatch: 'full' },
 ];

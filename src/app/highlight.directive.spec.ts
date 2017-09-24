@@ -13,18 +13,29 @@ import { Component } from '@angular/core';
 class DirectiveHostComponent {
 }
 
-xdescribe('HighlightDirective', () => {
+describe('HighlightDirective', () => {
   let fixture: ComponentFixture<DirectiveHostComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DirectiveHostComponent, HighlightDirective ]
+      declarations: [DirectiveHostComponent, HighlightDirective]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DirectiveHostComponent);
     fixture.detectChanges();
+  });
+  it('should highlight the first element with cyan', () => {
+    let de = fixture.debugElement.queryAll(By.css('p'))[0];
+    expect(de.nativeElement.style.backgroundColor).toBe('cyan');
+  });
+  it('should highlight the second element with default color', () => {
+    let de = fixture.debugElement.queryAll(By.css('p'))[1];
+    let directive = de.injector.get(HighlightDirective);
+    console.log(directive.defaultColor);
+    // expect(de.nativeElement.style.backgroundColor).toBe('yellow');
+    expect(de.nativeElement.style.backgroundColor).toBe(directive.defaultColor);
   });
 });

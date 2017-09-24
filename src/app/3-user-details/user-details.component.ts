@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router'; 
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-details',
@@ -12,11 +12,11 @@ export class UserDetailsComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(p => {
       if (p['id'] === 0)
-        this.router.navigate(['not-found']);
+        {this.router.navigate(['not-found']);}
     });
   }
 
-  save() { 
-    this.router.navigate(['users']);
+  save() {
+   this.router.navigate(['users']);
   }
 }
